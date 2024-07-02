@@ -7,7 +7,7 @@ function sum1(a:number, b:number) {
 sum1(10, 20)
 
 // 함수의 반환 값에 타입을 정의하는 방식
-function add():number {
+function add1():number {
     return 10;
 }
 
@@ -15,3 +15,12 @@ function add():number {
 function sum2(a:number, b:number) : number {
     return a + b;
 }
+
+// 함수의 옵셔널 파라미터
+function log(a:string, b?: string, c?:string) {
+
+}
+
+log('hello world');
+log('hello ts', 'abc');
+
