@@ -24,3 +24,7 @@ var detailItems: DetailedDropdown<number> = {
   description: 'b',
   tag: 2
 }
+
+// Best Common Type
+var arr = [1, 2, 3] // number[]
+var arr2 = [1, 2, true] // (number | boolean)[]
