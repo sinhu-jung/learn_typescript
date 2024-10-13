@@ -1,8 +1,8 @@
 // utils
-function $(selector: any) {
-  return document.querySelector(selector);
+function $(selector: string) {
+  return document.querySelector(selector) as HTMLElement;
 }
-function getUnixTimestamp(date: any) {
+function getUnixTimestamp(date: Date) {
   return new Date(date).getTime();
 }
 
@@ -17,7 +17,7 @@ const recoveredList = $(".recovered-list");
 const deathSpinner = createSpinnerElement("deaths-spinner");
 const recoveredSpinner = createSpinnerElement("recovered-spinner");
 
-function createSpinnerElement(id: any) {
+function createSpinnerElement(id: string) {
   const wrapperDiv = document.createElement("div");
   wrapperDiv.setAttribute("id", id);
   wrapperDiv.setAttribute(
@@ -47,7 +47,7 @@ function fetchCovidSummary() {
  * @param {'spain' | 'switzerland'} countryCode 스페인과 스위스만 지원됩니다.
  * @returns
  */
-function fetchCountryInfo(countryCode: any, status: any) {
+function fetchCountryInfo(countryCode: string) {
   // params: confirmed, recovered, deaths
   const url = `https://ts-covid-api.vercel.app/api/country/${countryCode}`;
   return axios.get(url);
@@ -94,10 +94,7 @@ async function handleListClick(event: any) {
   //   selectedId,
   //   'recovered',
   // );
-  const { data: confirmedResponse } = await fetchCountryInfo(
-    selectedId,
-    "confirmed"
-  );
+  const { data: confirmedResponse } = await fetchCountryInfo(selectedId);
   endLoadingAnimation();
   // NOTE: 코로나 종식으로 오픈 API 지원이 끝나서 death, recover 데이터는 지원되지 않습니다.
   // setDeathsList(deathResponse);
