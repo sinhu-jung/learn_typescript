@@ -16,5 +16,11 @@ export default tsESLint.config(
       // indent: ["error", 2],
     },
   },
+  {
+    rules: {
+      "@typescript-eslint/no-explicit-any": ["warn"],
+      "@typescript-eslint/no-unused-vars": ["warn"],
+    },
+  },
   eslintConfigPrettier
 );
