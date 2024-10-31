@@ -26,7 +26,7 @@ export interface CovidSummaryResponse {
   Date: Date;
 }
 
-export interface CountryInfoResponse {
+export interface CountryInfo {
   Country: string;
   CountryCode: string;
   Lat: string;
@@ -35,3 +35,5 @@ export interface CountryInfoResponse {
   Status: string;
   Date: string;
 }
+
+export type CountryInfoResponse = CountryInfo[];

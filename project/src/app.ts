@@ -1,6 +1,11 @@
 import axios, { AxiosResponse } from "axios";
 import { Chart } from "chart.js";
-import { Country, CountryInfoResponse, CovidSummaryResponse } from "./covid";
+import {
+  Country,
+  CountryInfo,
+  CountryInfoResponse,
+  CovidSummaryResponse,
+} from "./covid";
 
 // utils
 function $(selector: string) {
@@ -52,7 +57,7 @@ function fetchCovidSummary(): Promise<AxiosResponse<CovidSummaryResponse>> {
  */
 function fetchCountryInfo(
   countryCode: string
-): Promise<AxiosResponse<CountryInfoResponse[]>> {
+): Promise<AxiosResponse<CountryInfoResponse>> {
   // params: confirmed, recovered, deaths
   const url = `https://ts-covid-api.vercel.app/api/country/${countryCode}`;
   return axios.get(url);
@@ -156,13 +161,11 @@ function renderChart(data: number[], labels: string[]) {
   });
 }
 
-function setChartData(data: CountryInfoResponse[]) {
-  const chartData = data
-    .slice(-14)
-    .map((value: CountryInfoResponse) => value.Cases);
+function setChartData(data: CountryInfoResponse) {
+  const chartData = data.slice(-14).map((value: CountryInfo) => value.Cases);
   const chartLabel = data
     .slice(-14)
-    .map((value: CountryInfoResponse) =>
+    .map((value: CountryInfo) =>
       new Date(value.Date).toLocaleDateString().slice(5, -1)
     );
   renderChart(chartData, chartLabel);
