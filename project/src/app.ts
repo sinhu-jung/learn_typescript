@@ -80,7 +80,7 @@ async function handleListClick(event: Event) {
     event.target instanceof HTMLParagraphElement ||
     event.target instanceof HTMLSpanElement
   ) {
-    selectedId = event.target.parentElement.id;
+    selectedId = event.target.parentElement?.id;
   }
   if (event.target instanceof HTMLLIElement) {
     selectedId = event.target.id;
@@ -104,7 +104,7 @@ async function handleListClick(event: Event) {
   //   selectedId,
   //   'recovered',
   // );
-  const { data: confirmedResponse } = await fetchCountryInfo(selectedId);
+  const { data: confirmedResponse } = await fetchCountryInfo(selectedId ?? "");
   endLoadingAnimation();
   // NOTE: 코로나 종식으로 오픈 API 지원이 끝나서 death, recover 데이터는 지원되지 않습니다.
   // setDeathsList(deathResponse);
@@ -116,11 +116,11 @@ async function handleListClick(event: Event) {
 }
 
 function clearDeathList() {
-  deathsList.innerHTML = null;
+  deathsList.innerHTML = "";
 }
 
 function clearRecoveredList() {
-  recoveredList.innerHTML = null;
+  recoveredList.innerHTML = "";
 }
 
 function startLoadingAnimation() {
